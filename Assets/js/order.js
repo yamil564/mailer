@@ -1,0 +1,8 @@
+$(".delete").on('click',function(){$("#order").val($(this).val())})
+$("#deleteOrder").bind("submit",function(e){e.preventDefault()
+$.ajax({type:$(this).attr("method"),url:$(this).attr("action"),data:new FormData(this),contentType:!1,processData:!1,success:function(data){if(data!="Successfully removed"){message("error",data,"#CC1E1E")}else{$('#deleteModal').modal('hide')
+message("success",data,"#4CC522")
+setTimeout(()=>{location.reload()},1500)}},})})
+autosize($('.content'));$('input[name=validateAgent]').change(function(){$('#agent').toggle()})
+$('.custom').each(function(){$(this).change(function(){let btn=$(this).prop('files');let kilobyte=parseInt(btn[0].size)/1024;if(btn.length!==0&&kilobyte<2048){let reader=new FileReader();reader.readAsDataURL(btn[0]);reader.onload=function(){message("success","Picture uploaded","#4CC522")}}else{message("error","the image is too large (maximum 2MB)","#CC1E1E");$(this).val('')}})});$('#btnFileagent').change(function(){let btn=$(this).prop('files');let kilobyte=parseInt(btn[0].size)/1024;if(btn.length!==0&&kilobyte<2048){let reader=new FileReader();reader.readAsDataURL(btn[0]);reader.onload=function(){message("success","Agent uploaded","#4CC522")}}else{message("error","the image is too large (maximum 2MB)","#CC1E1E");$(this).val('')}});$("#createCustom").bind("submit",function(){let validate=!0;let inputs=$('.required');inputs.each(function(){let mensaje=".msg_"+$(this).attr("id");if($(this).val()===""&&($('#txtMlsId').val()===''||$('#txtMlsId').val()===undefined)){$(this).addClass("invalid");$(mensaje).html("The field is required");validate=!1}
+$(this).keyup(function(){$(this).removeClass("invalid");$(mensaje).empty()})});return validate})

@@ -1,0 +1,4 @@
+Errores:
+Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.0".
+Solucion:
+composer install --ignore-platform-reqs

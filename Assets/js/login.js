@@ -1,0 +1,5 @@
+function validaForm(){let bool=!0;let inputs=$("input");inputs.each(function(){let mensaje=".msg_"+$(this).attr("id");if($(this).val()===""){$(this).addClass("invalid");$(mensaje).html("The field is required");bool=!1}
+$(this).keyup(function(){$(this).removeClass("invalid");$(mensaje).empty()})});return bool}
+function message(icon,bool,title,background){const Toast=Swal.mixin({toast:!0,position:"top-end",showConfirmButton:!1,timer:1500,timerProgressBar:bool,});Toast.fire({icon:icon,iconColor:"#fff",title:title,background:background,})}
+$("#enviar").bind("submit",function(){if(validaForm()){$.ajax({type:$(this).attr("method"),url:$(this).attr("action"),data:$(this).serialize(),dataType:"json",success:function(data){if(data[1]==="Signed in successfully"){message("success",!0,data[1],"#4CC522");setTimeout(()=>{window.location.href=data[0]},1500)}else{message("error",!1,data[1],"#CC1E1E")}},})}
+return!1})

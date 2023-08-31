@@ -1,13 +1,13 @@
 <?php
 //define la url base
-const BASE_URL = "https://smartreservices.com/";
+const BASE_URL = "http://mailer.test/";
 const NAME='/';
 //const name=''
 //datos necesario para la conexion de base de datos
 const DB_HOST = "localhost";
 const DB_NAME = "mailerdb";
-const DB_USER = "user_mailer";
-const DB_PASSWORD = "8SFI=]%F1qZ%";
+const DB_USER = "root";
+const DB_PASSWORD = "";
 const DB_CHARSET = "charset=utf8";
 
 //delimitares decimal y millar 

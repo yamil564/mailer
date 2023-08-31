@@ -10,15 +10,21 @@ class Mysql extends Conexion
     {
         $this->conexion = new Conexion();
         $this->conexion = $this->conexion->conectar();
+        $this->conexion->query("SET sql_mode = ''");
+        $this->conexion->query("SET NAMES 'utf8'");
     }
 
     public function insert_data(string $query, array $arrvalues)
     {
+        //email();si ingresa
         $this->strquery = $query;
         $this->arrvalues = $arrvalues;
         $insert = $this->conexion->prepare($this->strquery);
+        //email2($arrvalues);
         $resinsert = $insert->execute($this->arrvalues);
+        //email(); no ingresa
         if ($resinsert) {
+            //email('Hola');
             return $this->conexion->lastInsertId();
         }
         return 0;

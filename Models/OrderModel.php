@@ -115,6 +115,7 @@ class OrderModel extends Mysql
 
     public function addNewOrder($idClient, $type_order, $id_type, $mls, $request, $salesTax, $type_services, $processing, $id_promotional_code, $subtotal, $total, $duetoday, $agent, $orderDate)
     {
+        //email();
         $query = "insert into mailerdb.order(id_client,$type_order,mls,special_request,sales_tax,type_services,processing,id_promotional_code,sub_total,total,duetoday,agent,order_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $data = array($idClient, $id_type, $mls, $request, $salesTax, $type_services, $processing, $id_promotional_code, $subtotal, $total, $duetoday, $agent, $orderDate);
         return $this->insert_data($query, $data);

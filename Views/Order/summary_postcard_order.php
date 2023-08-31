@@ -10,7 +10,7 @@
         <div id="content">
             <?php echo nav_user(); ?>
             <section id="order_summary" class="container">
-                <h2>Order Summary</h2>
+                <h2>Order Summary ANTONELLA</h2>
                 <hr>
                 <?php
                 if (!empty($data)) {
@@ -174,7 +174,7 @@
     
                             document.getElementById("btnSummary").addEventListener("click", function(){
                                 this.style.display = "none";
-                                window.location.href = "https://smartreservices.com/?order=successful";
+                                window.location.href = "http://mailer.test/?order=successful";
                                 
                             });
                         </script>

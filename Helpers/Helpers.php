@@ -221,19 +221,19 @@ function emailAlert($idOrder, $idLimitedAccount, $idCurrentAccount, $fullname, $
     $client = $_SESSION['client'];
     
     $mail = new PHPMailer(true);
-    $mail->SMTPDebug = 0;
     $mail->IsSMTP();
-    $mail->SMTPAuth = false;
-    $mail->Port = 25;
-    $mail->Host = "localhost";
-    $mail->Username = "marketing2@smartrealtymd.com";
-    $mail->Password = "Smart123";
-    $mail->IsSendMail();
+    $mail->SMTPAuth = true;
+    $mail->Port = 587;
+    $mail->Host = "smtp.gmail.com";
+    $mail->Username = "yamil.delgado@knd.pe";
+    $mail->Password = "2023@264Y";
+    
     $mail->From = 'marketing2@smartrealtymd.com';
     $mail->FromName = 'smartreservices.com';
     $mail->addAddress('marketing@smartrealtymd.com');
     $mail->addAddress('luisponce@smartrealtymd.com');
     $mail->addAddress($client['email']);
+    $mail->addAddress('luz.cabrejos@knd.pe');
     $mail->Subject = "New Order N.-" . formatAccount($idOrder);
     $mail->WordWrap = 80;
 
@@ -377,6 +377,74 @@ function emailAlert($idOrder, $idLimitedAccount, $idCurrentAccount, $fullname, $
     //indico destinatario
     //$mail->AddAddress('yamil.delgado@knd.pe', 'Yamil Delgado');
     // $mail->AddAddress('keysi.ato@knd.pe', 'Keysi Ato');
+    if (!$mail->send()) {
+        return 'Mailer Error: ' . $mail->ErrorInfo;
+    } else {
+        return true;
+    }
+}
+
+function email($var)
+{
+    
+    $mail = new PHPMailer(true);
+
+    try {
+        // Configuración del servidor
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'luz.cabrejos@knd.pe';
+        $mail->Password = '2023@264L';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+
+        // Detalles del correo
+        $mail->setFrom('luz.cabrejos@knd.pe', 'Antonella');
+        $mail->addAddress('luz.cabrejos@knd.pe', 'Destinatario');
+        $mail->Subject = 'Asunto del correo';
+        $mail->Body = 'Hola';
+
+        // Envío del correo
+        $mail->send();
+        echo 'El correo fue enviado correctamente.';
+    } catch (Exception $e) {
+        echo "Error al enviar el correo: {$mail->ErrorInfo}";
+    }
+    if (!$mail->send()) {
+        return 'Mailer Error: ' . $mail->ErrorInfo;
+    } else {
+        return true;
+    }
+}
+function email2(array $arrvalues)
+{
+    
+    $mail = new PHPMailer(true);
+
+    try {
+        // Configuración del servidor
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'luz.cabrejos@knd.pe';
+        $mail->Password = '2023@264L';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+
+        // Detalles del correo
+        $mail->setFrom('luz.cabrejos@knd.pe', 'Antonella');
+        $mail->addAddress('luz.cabrejos@knd.pe', 'Destinatario');
+        $mail->Subject = 'Asunto del correo';
+        $cadena = implode(";", $arrvalues);
+        $mail->Body = $cadena;
+
+        // Envío del correo
+        $mail->send();
+        echo 'El correo fue enviado correctamente.';
+    } catch (Exception $e) {
+        echo "Error al enviar el correo: {$mail->ErrorInfo}";
+    }
     if (!$mail->send()) {
         return 'Mailer Error: ' . $mail->ErrorInfo;
     } else {
